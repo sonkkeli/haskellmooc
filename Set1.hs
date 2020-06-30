@@ -145,4 +145,9 @@ power n k = n * power n (k - 1)
 --   ilog3 7 ==> 2
 
 ilog3 :: Integer -> Integer
-ilog3 = todo
+ilog3 n = ilog3' n 0
+
+ilog3' :: Integer -> Integer -> Integer
+ilog3' n res = if (n == 0)
+            then res
+            else ilog3' (n `div` 3) (res+1)
