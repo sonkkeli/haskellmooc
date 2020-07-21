@@ -42,7 +42,6 @@ maxBy measure a b
 --   mapMaybe length (Just "abc") ==> Just 3
 
 mapMaybe :: (a -> b) -> Maybe a -> Maybe b
--- mapMaybe f x
 mapMaybe f (Just x) = Just(f x)
 mapMaybe f Nothing = Nothing
 
@@ -81,9 +80,11 @@ mapMaybe2 f x y = Nothing
 palindromeHalfs :: [String] -> [String]
 palindromeHalfs xs = map firstHalf (filter palindrome xs)
 
-firstHalf = todo
+firstHalf :: String -> String
+firstHalf xs = take ((length xs + 1 ) `div` 2) xs
 
-palindrome = todo
+palindrome :: String -> Bool
+palindrome xs = reverse xs == xs
 
 ------------------------------------------------------------------------------
 -- Ex 5: Implement a function capitalize that takes in a string and
@@ -101,7 +102,10 @@ palindrome = todo
 --   capitalize "goodbye cruel world" ==> "Goodbye Cruel World"
 
 capitalize :: String -> String
-capitalize = todo
+capitalize x = unwords (map capitalizeFirst (words x))
+
+capitalizeFirst :: String -> String
+capitalizeFirst word = toUpper (head word) : tail word
 
 ------------------------------------------------------------------------------
 -- Ex 6: powers k max should return all the powers of k that are less
